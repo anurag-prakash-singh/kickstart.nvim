@@ -345,6 +345,20 @@ vim.g.loaded_netrwPlugin = 1
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- Tab navigation
+vim.api.nvim_set_keymap('n', '<leader>1', '1gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>2', '2gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>3', '3gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>4', '4gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>5', '5gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>6', '6gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>7', '7gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>8', '8gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>9', '9gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>n', ':tabn', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>p', ':tabp', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader><TAB>', ':tabnew<CR>', { noremap = true, silent = true})
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
