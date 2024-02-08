@@ -357,6 +357,7 @@ vim.api.nvim_set_keymap('n', '<leader>8', '8gt', { noremap = true, silent = true
 vim.api.nvim_set_keymap('n', '<leader>9', '9gt', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>n', ':tabn', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>p', ':tabp', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader><TAB>', ':tabnew<CR>', { noremap = true, silent = true})
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
