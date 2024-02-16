@@ -283,7 +283,16 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
-}, {})
+  -- empty setup using defaults
+  {"nvim-tree/nvim-tree.lua",
+    config = function()
+      require'nvim-tree'.setup {
+        -- Your nvim-tree configuration here
+      }
+    end
+  },
+},
+{})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -326,11 +335,29 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Added for nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Tab navigation
+vim.api.nvim_set_keymap('n', '<leader>1', '1gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>2', '2gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>3', '3gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>4', '4gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>5', '5gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>6', '6gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>7', '7gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>8', '8gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>9', '9gt', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>n', ':tabn', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>p', ':tabp', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader><TAB>', ':tabnew<CR>', { noremap = true, silent = true})
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -341,6 +368,22 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- NVimTree configuration
+--
+-- Keymaps for NvimTree
+vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tc', ':NvimTreeClose<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tf', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+      vim.cmd("quit")
+    end
+  end
+})
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
