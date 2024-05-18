@@ -359,6 +359,9 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':tabn', { noremap = true, silent = tr
 vim.api.nvim_set_keymap('n', '<leader>p', ':tabp', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader><TAB>', ':tabnew<CR>', { noremap = true, silent = true})
 
+-- Navigation within a buffer
+vim.api.nvim_set_keymap('n', '<leader>jb', '\'^', { noremap = true, silent = true})
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -723,8 +726,10 @@ cmp.setup {
   },
 }
 
-require('options')
+package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/nvim/?.lua"
+
 require('keymaps')
+require('options')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
@@ -733,5 +738,5 @@ require('keymaps')
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-
+vim.opt.guicursor = "i:hor10"
 
