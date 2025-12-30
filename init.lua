@@ -211,6 +211,31 @@ do
 
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+  -- My key-mappings
+
+  vim.opt.guicursor = 'i:hor10'
+
+  local opt = vim.opt
+
+  -- tabs and indentation
+  opt.expandtab = true
+  opt.tabstop = 2
+  opt.shiftwidth = 2
+
+  -- search settings
+  opt.ignorecase = true -- disable case sensitive search by default
+  opt.smartcase = true -- if mixed case is included in the search, turns on case sensitive match
+
+  opt.cursorline = true
+
+  opt.termguicolors = true
+  opt.background = 'dark'
+  opt.signcolumn = 'yes'
+
+  vim.o.completeopt = 'menuone,noinsert,noselect'
+
+  -- My key-mappings END
+
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
   -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
   -- is not what someone will guess without a bit more experience.
