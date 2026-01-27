@@ -222,6 +222,12 @@ opt.signcolumn = 'yes'
 
 vim.o.completeopt = 'menuone,noinsert,noselect'
 
+-- Toggle NvimTree
+vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+
+-- Focus NvimTree
+vim.keymap.set('n', '<leader>tf', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
+
 -- My key-mappings END
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
@@ -295,6 +301,19 @@ require('lazy').setup({
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`.
   --
+
+  { -- nvim-tree file explorer - https://github.com/nvim-tree/nvim-tree.lua/wiki/Installation
+    'nvim-tree/nvim-tree.lua',
+    version = '*',
+    lazy = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('nvim-tree').setup {}
+    end,
+  },
+
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
