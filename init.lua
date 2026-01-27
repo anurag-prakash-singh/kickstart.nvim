@@ -234,6 +234,9 @@ do
 
   vim.o.completeopt = 'menuone,noinsert,noselect'
 
+  vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+  vim.keymap.set('n', '<leader>tf', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
+
   -- My key-mappings END
 
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -370,6 +373,12 @@ do
   -- and then call its `setup()` function to start it with default settings.
   vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
   require('guess-indent').setup {}
+
+  vim.pack.add {
+    gh 'nvim-tree/nvim-web-devicons',
+    gh 'nvim-tree/nvim-tree.lua',
+  }
+  require('nvim-tree').setup {}
 
   -- Here is a more advanced configuration example that passes options to `gitsigns.nvim`
   --
