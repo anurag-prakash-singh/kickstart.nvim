@@ -314,6 +314,30 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'romgrk/barbar.nvim',
+    version = '^1.0.0',
+    lazy = false,
+    dependencies = {
+      'lewis6991/gitsigns.nvim',
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    opts = {
+      icons = {
+        filetype = { enabled = vim.g.have_nerd_font },
+        button = vim.g.have_nerd_font and '' or 'x',
+        modified = { button = '*' },
+        pinned = { button = vim.g.have_nerd_font and '' or 'p' },
+      },
+      sidebar_filetypes = {
+        NvimTree = true,
+      },
+    },
+  },
+
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -480,6 +504,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Find open buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
