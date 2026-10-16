@@ -436,6 +436,20 @@ do
     end,
   }
 
+  vim.g.barbar_auto_setup = false
+  vim.pack.add { { src = gh 'romgrk/barbar.nvim', version = vim.version.range '1.*' } }
+  require('barbar').setup {
+    icons = {
+      filetype = { enabled = vim.g.have_nerd_font },
+      button = vim.g.have_nerd_font and '' or 'x',
+      modified = { button = '*' },
+      pinned = { button = vim.g.have_nerd_font and '' or 'p' },
+    },
+    sidebar_filetypes = {
+      NvimTree = true,
+    },
+  }
+
   -- Useful plugin to show you pending keybinds.
   vim.pack.add { gh 'folke/which-key.nvim' }
   require('which-key').setup {
@@ -597,6 +611,7 @@ do
   vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
   vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
   vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+  vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Find open buffers' })
 
   -- Add Telescope-based LSP pickers when an LSP attaches to a buffer.
   -- If you later switch picker plugins, this is where to update these mappings.
