@@ -18,7 +18,7 @@ This is a personal Neovim configuration derived from kickstart.nvim. **`rc2` is 
 | `.github/workflows/stylua.yml` | Runs `stylua --check .`; the job is restricted to the upstream `nvim-lua/kickstart.nvim` repository. |
 | `.github/pull_request_template.md` | Reminder to select the intended PR base repository. |
 | `.github/ISSUE_TEMPLATE/bug_report.md` | Bug-report checklist and reproduction template. |
-| `.gitignore` | Excludes local files such as `nvim-pack-lock.json`, `spell/`, and `.luarc.json`. |
+| `.gitignore` | Excludes local files such as `nvim-pack-lock.json`, the legacy `lazy-lock.json`, `spell/`, and `.luarc.json`. |
 | `LICENSE.md` | Repository license. |
 
 ## Navigating `init.lua`
@@ -52,10 +52,11 @@ Search for these plugin names or identifiers to locate specific features:
 
 The `My key-mappings` block sets a horizontal insert-mode cursor, two-space expanded tabs, smart-case search, cursor-line highlighting, true color, a dark background, a persistent sign column, and completion-menu options. `guess-indent.nvim` can adjust indentation for individual buffers.
 
-nvim-tree is enabled at startup with default setup and a web-devicons dependency:
+nvim-tree is enabled at startup with default setup and a web-devicons dependency. Use `<Leader>t` as the prefix for tree-related mappings:
 
 - `<Space>tt`: toggle the file tree.
 - `<Space>tf`: focus the file tree.
+- `<Space>te`: reveal the current file in the tree (`NvimTreeFindFile`).
 
 `<Space>fb` opens Telescope's list of open buffers. The existing `<Space><Space>` mapping opens the same picker.
 
@@ -77,6 +78,6 @@ The former `gitsigns.lua` module was removed upstream; its recommended mappings 
 
 ## Runtime State and Validation
 
-Plugins and Mason-managed tools are installed outside this repository under Neovim's data directory. Inspect it with `:lua print(vim.fn.stdpath('data'))`. `vim.pack` manages `nvim-pack-lock.json`, which is ignored. Legacy lazy.nvim installations and `lazy-lock.json` are no longer used by this configuration.
+Plugins and Mason-managed tools are installed outside this repository under Neovim's data directory. Inspect it with `:lua print(vim.fn.stdpath('data'))`. `vim.pack` manages `nvim-pack-lock.json`, which is ignored. Legacy lazy.nvim installations and `lazy-lock.json` are no longer used; the legacy lockfile remains ignored to preserve local state.
 
 Use `:lua vim.pack.update(nil, { offline = true })` to inspect plugin state, `:lua vim.pack.update()` to review updates, and `:Mason`, `:ConformInfo`, and `:messages` for diagnostics. There is no application build or automated test suite. Validate edits with `stylua --check .`, a fresh Neovim 0.12+ session, `:checkhealth kickstart`, and manual feature checks. Treesitter also requires the tree-sitter CLI. Update this map when configuration locations or enabled modules change.

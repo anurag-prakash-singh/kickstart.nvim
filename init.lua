@@ -237,6 +237,8 @@ do
   vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
   vim.keymap.set('n', '<leader>tf', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
 
+  vim.keymap.set('n', '<leader>te', '<cmd>NvimTreeFindFile<CR>', { silent = true, desc = 'Reveal current file in tree' })
+
   -- My key-mappings END
 
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -459,7 +461,7 @@ do
     -- Document existing key chains
     spec = {
       { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
-      { '<leader>t', group = '[T]oggle' },
+      { '<leader>t', group = '[T]ree' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
       { 'gr', group = 'LSP Actions', mode = { 'n' } },
     },
